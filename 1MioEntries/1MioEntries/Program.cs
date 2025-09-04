@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using MySqlConnector;
@@ -10,6 +11,7 @@ namespace _1MioEntries
     {
         static async Task Main(string[] args)
         {
+            Stopwatch watch = new Stopwatch();
             var connectionString = "Server=localhost;Database=entries;Port=32768;User ID=root;Password=insy;";
 
             int numberOfEntries = 1000000;
@@ -25,7 +27,8 @@ namespace _1MioEntries
             //await InsertEntriesAsync(connectionString, entries);
 
             // Example search
-            var searchTerm = "6boeW6JXT8"; // change to whatever you want to search
+            watch.Start();
+            var searchTerm = "abc"; // change to whatever you want to search
             var results = await SearchEntriesAsync(connectionString, searchTerm);
 
             Console.WriteLine($"Found {results.Count} entries containing '{searchTerm}':");
@@ -33,6 +36,8 @@ namespace _1MioEntries
             {
                 Console.WriteLine($"ID: {id}"); // Print the ID
             }
+            watch.Stop();
+            Console.WriteLine($"Search completed in {watch.ElapsedMilliseconds} ms");
         }
 
         static string GenerateRandomString(int length)

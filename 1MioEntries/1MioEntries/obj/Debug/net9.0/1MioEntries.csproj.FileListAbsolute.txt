@@ -17,3 +17,4 @@ C:\Users\mmose\OneDrive - HTL Krems\Schule\Desktop\SCHULE\25-26\INSY\INSY25-26\1
 C:\Users\mmose\OneDrive - HTL Krems\Schule\Desktop\SCHULE\25-26\INSY\INSY25-26\1MioEntries\1MioEntries\obj\Debug\net9.0\1MioEntries.pdb
 C:\Users\mmose\OneDrive - HTL Krems\Schule\Desktop\SCHULE\25-26\INSY\INSY25-26\1MioEntries\1MioEntries\obj\Debug\net9.0\1MioEntries.genruntimeconfig.cache
 C:\Users\mmose\OneDrive - HTL Krems\Schule\Desktop\SCHULE\25-26\INSY\INSY25-26\1MioEntries\1MioEntries\obj\Debug\net9.0\ref\1MioEntries.dll
+C:\Users\mmose\OneDrive - HTL Krems\Schule\Desktop\SCHULE\25-26\INSY\INSY25-26\1MioEntries\1MioEntries\obj\Debug\net9.0\1MioEntries.sourcelink.json
