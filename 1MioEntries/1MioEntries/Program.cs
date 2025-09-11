@@ -28,14 +28,18 @@ namespace _1MioEntries
 
             // Example search
             watch.Start();
-            var searchTerm = "abc"; // change to whatever you want to search
-            var results = await SearchEntriesAsync(connectionString, searchTerm);
-
-            Console.WriteLine($"Found {results.Count} entries containing '{searchTerm}':");
-            foreach (var (id, value) in results)
+            for (int i = 0; i < 100; i++)
             {
-                Console.WriteLine($"ID: {id}"); // Print the ID
+                var searchTerm = GenerateRandomString(1); // change to whatever you want to search
+                var results = await SearchEntriesAsync(connectionString, searchTerm);
+
+                Console.WriteLine($"Found {results.Count} entries containing '{searchTerm}':");
+                /*foreach (var (id, value) in results)
+                {
+                    Console.WriteLine($"ID: {id}"); // Print the ID
+                }*/
             }
+
             watch.Stop();
             Console.WriteLine($"Search completed in {watch.ElapsedMilliseconds} ms");
         }
@@ -81,7 +85,7 @@ namespace _1MioEntries
 
             using var connection = new MySqlConnection(connectionString);
             await connection.OpenAsync();
-
+        
             string sql = "SELECT id, `VALUE` FROM entries WHERE `VALUE` LIKE @search";
 
             using var cmd = new MySqlCommand(sql, connection);
