@@ -14,67 +14,71 @@ namespace _1MioEntries
             Stopwatch watch = new Stopwatch();
             var connectionString = "Server=localhost;Database=entries;Port=32768;User ID=root;Password=insy;";
 
-            int numberOfEntries = 1000000;
+            int numberOfEntries = 1_000_000;
             var entries = new List<string>();
 
-            // Generate all random strings
-            /*for (int i = 0; i < numberOfEntries; i++)
+            // Generate 1M random 5-digit numbers
+            for (int i = 0; i < numberOfEntries; i++)
             {
-                entries.Add(GenerateRandomString(10));
-            }*/
-
-            // Insert all entries at once
-            //await InsertEntriesAsync(connectionString, entries);
-
-            // Example search
-            watch.Start();
-            var searchTerm = "abc"; // change to whatever you want to search
-            var results = await SearchEntriesAsync(connectionString, searchTerm);
-
-            Console.WriteLine($"Found {results.Count} entries containing '{searchTerm}':");
-            foreach (var (id, value) in results)
-            {
-                Console.WriteLine($"ID: {id}"); // Print the ID
+                entries.Add(GenerateRandomNumberString(5));
             }
+
+            // Insert in batches (e.g. 10,000 rows at once)
+            await InsertEntriesAsync(connectionString, entries, batchSize: 10_000);
+
+            // Example search: 100 random numbers
+            watch.Start();
+            var rnd = new Random();
+
+            for (int i = 0; i < 100; i++)
+            {
+                var searchTerm = GenerateRandomNumberString(5);
+                var results = await SearchEntriesAsync(connectionString, searchTerm);
+                Console.WriteLine($"Search {i + 1}: Found {results.Count} entries containing '{searchTerm}'");
+            }
+
             watch.Stop();
-            Console.WriteLine($"Search completed in {watch.ElapsedMilliseconds} ms");
+            Console.WriteLine($"100 searches completed in {watch.ElapsedMilliseconds} ms");
         }
 
-        static string GenerateRandomString(int length)
+        // Generate a random numeric string
+        static string GenerateRandomNumberString(int length)
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var random = new Random();
-            char[] stringChars = new char[length];
-
+            var rnd = new Random();
+            char[] digits = new char[length];
             for (int i = 0; i < length; i++)
             {
-                stringChars[i] = chars[random.Next(chars.Length)];
+                digits[i] = (char)('0' + rnd.Next(0, 10));
             }
-
-            return new string(stringChars);
+            return new string(digits);
         }
 
-        static async Task InsertEntriesAsync(string connectionString, List<string> entries)
+        // Insert entries in batches
+        static async Task InsertEntriesAsync(string connectionString, List<string> entries, int batchSize = 10_000)
         {
             using var connection = new MySqlConnection(connectionString);
             await connection.OpenAsync();
 
-            // Build SQL with multiple parameters
-            string sql = "INSERT INTO entries (`VALUE`) VALUES ";
-            sql += string.Join(",", entries.Select((_, idx) => $"(@val{idx})"));
-
-            using var cmd = new MySqlCommand(sql, connection);
-
-            // Add all parameters
-            for (int i = 0; i < entries.Count; i++)
+            for (int offset = 0; offset < entries.Count; offset += batchSize)
             {
-                cmd.Parameters.AddWithValue($"@val{i}", entries[i]);
-            }
+                var batch = entries.Skip(offset).Take(batchSize).ToList();
 
-            int rowsAffected = await cmd.ExecuteNonQueryAsync();
-            Console.WriteLine($"{rowsAffected} row(s) inserted.");
+                string sql = "INSERT INTO entries (`VALUE`) VALUES " +
+                             string.Join(",", batch.Select((_, idx) => $"(@val{idx})"));
+
+                using var cmd = new MySqlCommand(sql, connection);
+
+                for (int i = 0; i < batch.Count; i++)
+                {
+                    cmd.Parameters.AddWithValue($"@val{i}", batch[i]);
+                }
+
+                int rowsAffected = await cmd.ExecuteNonQueryAsync();
+                Console.WriteLine($"Inserted {rowsAffected} rows (offset {offset})");
+            }
         }
 
+        // Search for a number string
         static async Task<List<(long Id, string Value)>> SearchEntriesAsync(string connectionString, string searchTerm)
         {
             var results = new List<(long, string)>();
@@ -82,10 +86,10 @@ namespace _1MioEntries
             using var connection = new MySqlConnection(connectionString);
             await connection.OpenAsync();
 
-            string sql = "SELECT id, `VALUE` FROM entries WHERE `VALUE` LIKE @search";
+            string sql = "SELECT id, `VALUE` FROM entries WHERE `VALUE` = @search";
 
             using var cmd = new MySqlCommand(sql, connection);
-            cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%");
+            cmd.Parameters.AddWithValue("@search", searchTerm);
 
             using var reader = await cmd.ExecuteReaderAsync();
             while (await reader.ReadAsync())
