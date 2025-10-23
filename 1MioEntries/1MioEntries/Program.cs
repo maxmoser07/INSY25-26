@@ -12,7 +12,7 @@ namespace _1MioEntries
         static async Task Main(string[] args)
         {
             Stopwatch watch = new Stopwatch();
-            var connectionString = "Server=localhost;Database=entries;Port=32768;User ID=root;Password=insy;";
+                var connectionString = "Server=localhost;Database=entries;Port=32768;User ID=root;Password=insy;";
 
             int numberOfEntries = 1_000_000;
             var entries = new List<string>();
