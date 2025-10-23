@@ -4,51 +4,81 @@ using System.Diagnostics;
 namespace where_clause;
 
 class Program
-{
-    static void Main(string[] args)
     {
-        string connectionString = "server=localhost;user=root;password=insy;database=scottnew";
-
-        using (var connection = new MySqlConnection(connectionString))
+        static void Main(string[] args)
         {
-            connection.Open();
+            string connectionString = "server=localhost;user=root;password=insy;database=scott_big";
+            int runs = 10; // number of repetitions
+            Random rand = new Random();
 
-            // Example 1: Non-optimized WHERE clause
-            string nonOptimizedQuery = @"
-                    SELECT * FROM emps
-                    WHERE YEAR(HIREDATE) = 1981;
-                ";
-
-            // Example 2: Optimized WHERE clause
-            string optimizedQuery = @"
-                    SELECT * FROM emps
-                    WHERE HIREDATE >= '1981-01-01' AND HIREDATE < '1982-01-01';
-                ";
-
-            Console.WriteLine("Running non-optimized query...");
-            double nonOptimizedTime = MeasureQueryTime(connection, nonOptimizedQuery);
-            Console.WriteLine($"Non-optimized query took: {nonOptimizedTime} ms\n");
-
-            Console.WriteLine("Running optimized query...");
-            double optimizedTime = MeasureQueryTime(connection, optimizedQuery);
-            Console.WriteLine($"Optimized query took: {optimizedTime} ms\n");
-
-            Console.WriteLine($"Difference: {nonOptimizedTime - optimizedTime} ms faster when optimized.");
-        }
-    }
-
-    static double MeasureQueryTime(MySqlConnection connection, string query)
-    {
-        Stopwatch stopwatch = new Stopwatch();
-        using (var command = new MySqlCommand(query, connection))
-        {
-            stopwatch.Start();
-            using (var reader = command.ExecuteReader())
+            using (var connection = new MySqlConnection(connectionString))
             {
-                while (reader.Read()) ;
+                connection.Open();
+                Console.WriteLine("Connected to database.\n");
+
+                double totalNonOpt = 0, totalOpt = 0, totalIndex = 0;
+
+                for (int i = 0; i < runs; i++)
+                {
+                    // Pick a random year between 1980 and 1990
+                    int year = rand.Next(1980, 1991);
+                    string start = $"{year}-01-01";
+                    string end = $"{year + 1}-01-01";
+
+                    // Build queries dynamically
+                    string nonOptimizedQuery = $@"
+                        SELECT * FROM emps
+                        WHERE YEAR(HIREDATE) = {year};
+                    ";
+
+                    string optimizedQuery = $@"
+                        SELECT * FROM emps
+                        WHERE HIREDATE >= '{start}' AND HIREDATE < '{end}';
+                    ";
+
+                    string indexedQuery = $@"
+                        SELECT * FROM emps
+                        WHERE YEAR(HIREDATE) = {year};
+                    ";
+
+                    // Run each query once with different years
+                    double t1 = MeasureQueryTime(connection, nonOptimizedQuery);
+                    double t2 = MeasureQueryTime(connection, optimizedQuery);
+                    double t3 = MeasureQueryTime(connection, indexedQuery);
+
+                    totalNonOpt += t1;
+                    totalOpt += t2;
+                    totalIndex += t3;
+
+                    Console.WriteLine($"Run {i + 1}/{runs} - Year: {year}");
+                    Console.WriteLine($"  Non-optimized: {t1:F2} ms");
+                    Console.WriteLine($"  Optimized: {t2:F2} ms");
+                    Console.WriteLine($"  With Index: {t3:F2} ms\n");
+                }
+
+                // Average over all runs
+                Console.WriteLine("=====================================================");
+                Console.WriteLine($"{"Query Type",-25} {"Average Time (ms)",20}");
+                Console.WriteLine("=====================================================");
+                Console.WriteLine($"{"Non-Optimized",-25} {totalNonOpt / runs,20:F3}");
+                Console.WriteLine($"{"Optimized",-25} {totalOpt / runs,20:F3}");
+                Console.WriteLine($"{"With Functional Index",-25} {totalIndex / runs,20:F3}");
+                Console.WriteLine("=====================================================");
             }
-            stopwatch.Stop();
         }
-        return stopwatch.Elapsed.TotalMilliseconds;
+
+        static double MeasureQueryTime(MySqlConnection connection, string query)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            using (var command = new MySqlCommand(query, connection))
+            {
+                stopwatch.Start();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read()) { /* simulate reading rows */ }
+                }
+                stopwatch.Stop();
+            }
+            return stopwatch.Elapsed.TotalMilliseconds;
+        }
     }
-}
