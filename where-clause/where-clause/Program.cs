@@ -82,3 +82,14 @@ class Program
             return stopwatch.Elapsed.TotalMilliseconds;
         }
     }
+    /*
+     no index:
+        Non-Optimized                          173,558
+        Optimized                              179,007
+    with index on hiredate
+        Non-Optimized                          172,754
+        Optimized                              136,042
+    with index on year(hiredate)
+        Non-Optimized                          123,120
+        Optimized                              199,948
+    */
