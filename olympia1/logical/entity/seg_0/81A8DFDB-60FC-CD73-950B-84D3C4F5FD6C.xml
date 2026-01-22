@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="81A8DFDB-60FC-CD73-950B-84D3C4F5FD6C" name="player">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:06:46 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<engineerTo>
+<item key="79340EF0-68F4-CF4D-2F47-A5CE3680E80D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="862BF5DC-D3BB-A4AB-5318-694706F0EAB7">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:28:47 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<engineerTo>
+<item key="79340EF0-68F4-CF4D-2F47-A5CE3680E80D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="687FEA4C-3C70-92E5-A8CF-849ACD40FAE3">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:00:41 UTC</createdTime>
+<generatorID>497194F6-4FD4-D009-05F6-073B6E8C0B37</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<engineerTo>
+<item key="79340EF0-68F4-CF4D-2F47-A5CE3680E80D" value="true"/>
+</engineerTo>
+<referedAttribute>37485952-E880-38F6-3A80-BE574BD4E0A5</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="2BFBE52F-18E4-8932-12DB-92217BE5009E" name="Sportler PK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:29:07 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="79340EF0-68F4-CF4D-2F47-A5CE3680E80D" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>862BF5DC-D3BB-A4AB-5318-694706F0EAB7</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

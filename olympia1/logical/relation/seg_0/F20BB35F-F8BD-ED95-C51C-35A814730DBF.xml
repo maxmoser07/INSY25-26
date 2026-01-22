@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="helperisperson" directorySegmentName="seg_0" id="F20BB35F-F8BD-ED95-C51C-35A814730DBF">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:05 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<engineerTo>
+<item key="79340EF0-68F4-CF4D-2F47-A5CE3680E80D" value="true"/>
+</engineerTo>
+<sourcePk>698A6264-80C8-0A27-629F-5E56E6D16D00</sourcePk>
+<targetPk>1119799D-DE6C-6748-FBCC-A0627672901B</targetPk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>9375AE5B-33CD-E0F4-4975-23341B75DA68</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>573FCB3F-9635-03F2-75B1-4D60A056619F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

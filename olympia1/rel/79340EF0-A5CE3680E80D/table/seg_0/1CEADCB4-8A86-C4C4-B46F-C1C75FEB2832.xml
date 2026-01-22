@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1CEADCB4-8A86-C4C4-B46F-C1C75FEB2832" name="nation">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>BB02E2B0-2FD8-105D-0B22-52A29A91634B</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="469520CB-EEF3-84D6-BF7A-5C2BE393A4C3">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>21FD0D44-1673-3AFF-E6A4-DCD087F5F0FE</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="managername" id="55494F3A-1AD5-BE49-16C8-91C35E0085D3">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>BDECB5D2-B4D6-D3E2-5688-5B310AE33A7D</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="phonenumber" id="63B2EB2E-7C91-6AA3-9937-88FA680889C6">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>3BB66603-4109-1478-1C7F-CA4418093D38</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="39EBA879-2277-5AA2-407B-D2129C2153DB" name="nation_PK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>3D8509C8-0DEC-11A9-0B6B-3C6F73240204</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="469520CB-EEF3-84D6-BF7A-5C2BE393A4C3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

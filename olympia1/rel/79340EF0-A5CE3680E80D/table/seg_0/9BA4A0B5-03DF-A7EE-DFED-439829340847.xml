@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9BA4A0B5-03DF-A7EE-DFED-439829340847" name="helperingame">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="helper_id" id="0E5914D8-42F2-88DB-3315-CFE1D8146255">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="47BFDD35-124D-D8BF-9523-C2A473EC6AD9" referredColumn="BA0E9DF0-6509-A2F9-2BA6-ABCA0A0185EB"/>
+</associations>
+</Column>
+<Column name="game_id" id="93EE4625-95F8-1D65-39E5-F66BCB783CFA">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D7E7E94C-8E29-4FE8-D5A1-C03102B21363" referredColumn="5DBA9057-B708-B566-C866-C0438D179F37"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EE02A27C-C1F2-90AF-2DA0-514DEB955A46" name="helperingame_PK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0E5914D8-42F2-88DB-3315-CFE1D8146255"/>
+<colUsage columnID="93EE4625-95F8-1D65-39E5-F66BCB783CFA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0F336A49-83E4-6468-B517-02E6B22C12DE" name="helperingame_helper_FK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<generatorID>61EF6EE1-7F03-07F6-3696-8A013701AB14</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0E5914D8-42F2-88DB-3315-CFE1D8146255"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="017F1742-2DB3-DE71-B022-B5AA7D6B265A" name="helperingame_game_FK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<generatorID>61EF6EE1-7F03-07F6-3696-8A013701AB14</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="93EE4625-95F8-1D65-39E5-F66BCB783CFA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

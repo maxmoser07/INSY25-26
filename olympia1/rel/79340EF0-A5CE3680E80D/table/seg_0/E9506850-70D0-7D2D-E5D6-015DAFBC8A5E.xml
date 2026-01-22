@@ -1,0 +1,255 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E9506850-70D0-7D2D-E5D6-015DAFBC8A5E" name="person">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>9375AE5B-33CD-E0F4-4975-23341B75DA68</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="0A4B24AC-12A1-A7AE-DB5A-41A26D232478">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>37485952-E880-38F6-3A80-BE574BD4E0A5</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="06BED6A7-3DBA-BDB6-BB10-7F649B9FBBFB">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>D1AC0145-E03B-B252-3791-8CB18813E04B</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="helper_id" id="3832B109-9040-340E-0F04-62D58EDD06EA">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<generatorID>795EB802-89C5-469A-3AD7-D4426C53BA70</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="referee_id" id="B0FDA81C-8A30-DF46-1622-56ABF6275587">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<generatorID>F2900C1E-756B-B2A2-CCEE-27FC90497B0D</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="player_id" id="77F1912E-5497-1BF2-17C4-B592CEB8E38F">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<generatorID>8B76BFBC-5BDD-37EA-A472-6D1935739992</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nation_id" id="266C8BEB-6542-80BE-81CD-3FCBCA1E737C">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:59:01 UTC</createdTime>
+<generatorID>171B26EA-45F8-6F66-D35B-B29D99F6C261</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="67A864C6-C065-9667-4A52-F70F81727B4B" referredColumn="469520CB-EEF3-84D6-BF7A-5C2BE393A4C3"/>
+</associations>
+</Column>
+<Column name="player_id2" id="613AF5CB-5EB9-0C7B-F3AA-6991E6E68C0B">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<generatorID>482E83D2-605E-C219-0552-AEA5AFABF388</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="46D565F6-2AFB-437B-C018-7E247EEB5E3D" referredColumn="FD631851-B934-CC50-7926-2546ED85DAB7"/>
+</associations>
+</Column>
+<Column name="referee_id2" id="64E0936A-6A7D-0234-C183-572D43C991B6">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<generatorID>77BE3BC8-9429-345B-288A-B8E753F5DA78</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4B3A48A0-B3C9-5A0F-305E-7F62919DD5AB" referredColumn="3888BB5A-5E33-4A99-78A6-05C3C348DE61"/>
+</associations>
+</Column>
+<Column name="helper_id2" id="FF37AD55-6FDC-831C-6A3F-1C4D606347F9">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<generatorID>5F415349-2457-7813-6A69-54F6A777C3D2</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="30DF017F-3700-BB6A-7679-2D17D1C0C190" referredColumn="BA0E9DF0-6509-A2F9-2BA6-ABCA0A0185EB"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AEB8B94B-A09F-0A8A-38F6-43C6DC5C71DC" name="person_PK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>698A6264-80C8-0A27-629F-5E56E6D16D00</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0A4B24AC-12A1-A7AE-DB5A-41A26D232478"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="38105546-80EF-6226-09C9-04CFA8684460" name="person__IDX">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>F793EEB1-7555-BD71-3939-EDD4FB9BA6E1</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="3832B109-9040-340E-0F04-62D58EDD06EA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="047FD1F0-5CF6-1805-843F-A631AC0EB0B3" name="person__IDXv1">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>29068362-A138-E233-A64A-8DB1DA026795</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="77F1912E-5497-1BF2-17C4-B592CEB8E38F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="290D2BF8-7769-8F36-24EC-BC03D594A5C9" name="person__IDXv2">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>23B76478-2ACF-D372-C04D-36CCA09A756A</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="B0FDA81C-8A30-DF46-1622-56ABF6275587"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AEC16F26-9DE1-1A1F-D520-A6576FE26D1E" name="person__IDXv3">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>F20BB35F-F8BD-ED95-C51C-35A814730DBF</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="FF37AD55-6FDC-831C-6A3F-1C4D606347F9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ABD30AC9-63CE-E87A-5B8D-6CD056FD4997" name="person__IDXv4">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>497194F6-4FD4-D009-05F6-073B6E8C0B37</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="613AF5CB-5EB9-0C7B-F3AA-6991E6E68C0B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1F2DCDD4-9496-F668-92FC-4C796A70D8D1" name="person__IDXv5">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>5FD8F972-78CE-7CE3-9BEF-F15DA051CAA5</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="64E0936A-6A7D-0234-C183-572D43C991B6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C9E53451-2A60-88A6-32B6-4BF1C5E1A764" name="person_nation_FK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:59:01 UTC</createdTime>
+<generatorID>90E13FDB-E9D2-DB21-D061-71F4E1D53C79</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="266C8BEB-6542-80BE-81CD-3FCBCA1E737C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="78479A46-EC02-00EC-6295-3246800CE677" name="person_helper_FK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<generatorID>F20BB35F-F8BD-ED95-C51C-35A814730DBF</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FF37AD55-6FDC-831C-6A3F-1C4D606347F9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C9F485E1-36D2-7D54-4D4F-8BE02F8380C1" name="person_player_FK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<generatorID>497194F6-4FD4-D009-05F6-073B6E8C0B37</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="613AF5CB-5EB9-0C7B-F3AA-6991E6E68C0B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="866D34BD-1C8B-F02C-4EB4-DD340D971406" name="person_referee_FK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<generatorID>5FD8F972-78CE-7CE3-9BEF-F15DA051CAA5</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="64E0936A-6A7D-0234-C183-572D43C991B6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

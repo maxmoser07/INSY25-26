@@ -1,0 +1,123 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="964FFC22-B83C-BA61-0E7D-748E195CC966" name="referee">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>84B78400-6239-B1C0-63C3-1AC63F53B217</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="3888BB5A-5E33-4A99-78A6-05C3C348DE61">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>51EE8793-E88E-DAD9-3521-73F57F48DD52</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="person_id" id="396B6D41-1098-E139-D3FB-26B341CC538C">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<generatorID>A8071AD9-EDE4-91AC-BA1D-0FB993AC7A93</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nation_id" id="F8C0E72C-DA9D-C053-9455-8EC198D9521B">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<generatorID>F60D4BC1-6490-336D-FB22-641C00F916A4</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BE15A7BE-F1C9-C5BC-779F-3EADDA0971E7" referredColumn="469520CB-EEF3-84D6-BF7A-5C2BE393A4C3"/>
+</associations>
+</Column>
+<Column name="person_id2" id="6B1C3D92-9F10-C685-54F6-660D10899224">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<generatorID>BBABDC5B-C20B-D185-6E05-7CD1295340B2</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="53A68F8E-3880-FD11-7B9A-1129EDE1E7E6" referredColumn="0A4B24AC-12A1-A7AE-DB5A-41A26D232478"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5F6D8DA0-F290-DEC1-50A1-EA52FC5994ED" name="referee_PK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>789EFB5B-B27B-8F5A-A90F-FC9B2C513051</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3888BB5A-5E33-4A99-78A6-05C3C348DE61"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="72873C8B-211C-7E57-67BC-EB81A607DDEA" name="referee__IDX">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>23B76478-2ACF-D372-C04D-36CCA09A756A</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="396B6D41-1098-E139-D3FB-26B341CC538C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2595B54B-4CCA-B117-1E21-EC9FF136B499" name="referee__IDXv1">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>5FD8F972-78CE-7CE3-9BEF-F15DA051CAA5</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="6B1C3D92-9F10-C685-54F6-660D10899224"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="27740FE4-CE8C-74BB-4D19-DADE85FAF83B" name="referee_nation_FK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:54:35 UTC</createdTime>
+<generatorID>E632F82B-3E94-63D7-CE35-8B4A9C6856F4</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F8C0E72C-DA9D-C053-9455-8EC198D9521B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6B34EA9D-0BCB-3A09-2052-5C29BEDBD9B3" name="referee_person_FK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 10:01:16 UTC</createdTime>
+<generatorID>5FD8F972-78CE-7CE3-9BEF-F15DA051CAA5</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B1C3D92-9F10-C685-54F6-660D10899224"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

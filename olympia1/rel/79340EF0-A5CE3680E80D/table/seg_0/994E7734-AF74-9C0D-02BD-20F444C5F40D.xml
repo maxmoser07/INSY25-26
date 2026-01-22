@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="994E7734-AF74-9C0D-02BD-20F444C5F40D" name="playeringame">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="game_id" id="5CDE78D6-F893-133D-2589-F490F25D7205">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F908C6D7-3CEC-B028-8004-27AB884958E1" referredColumn="5DBA9057-B708-B566-C866-C0438D179F37"/>
+</associations>
+</Column>
+<Column name="player_id" id="AFF7CACE-CFC2-ED28-E2BB-CC76F5A9D98B">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="06DE7BA1-DC01-8213-28E3-FAFF468C2909" referredColumn="FD631851-B934-CC50-7926-2546ED85DAB7"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="01C0A9AB-67A6-FB12-A8DE-097C7493CAC8" name="Relation_21_PK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5CDE78D6-F893-133D-2589-F490F25D7205"/>
+<colUsage columnID="AFF7CACE-CFC2-ED28-E2BB-CC76F5A9D98B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="073F6FEA-BF4F-CA62-8297-55915262F07E" name="Relation_21_game_FK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>461C9180-B39F-24E1-DF98-8AE98684054D</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5CDE78D6-F893-133D-2589-F490F25D7205"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2DD65E60-B6EA-861D-7EB8-6760ABC6CFBD" name="Relation_21_player_FK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:51:07 UTC</createdTime>
+<generatorID>461C9180-B39F-24E1-DF98-8AE98684054D</generatorID>
+<ownerDesignName>olympia1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AFF7CACE-CFC2-ED28-E2BB-CC76F5A9D98B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

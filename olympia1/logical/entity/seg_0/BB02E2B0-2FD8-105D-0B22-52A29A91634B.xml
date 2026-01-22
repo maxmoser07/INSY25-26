@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BB02E2B0-2FD8-105D-0B22-52A29A91634B" name="nation">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:08:02 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<engineerTo>
+<item key="79340EF0-68F4-CF4D-2F47-A5CE3680E80D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="21FD0D44-1673-3AFF-E6A4-DCD087F5F0FE">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:10:05 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<engineerTo>
+<item key="79340EF0-68F4-CF4D-2F47-A5CE3680E80D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="managername" id="BDECB5D2-B4D6-D3E2-5688-5B310AE33A7D">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:10:05 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<engineerTo>
+<item key="79340EF0-68F4-CF4D-2F47-A5CE3680E80D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="phonenumber" id="3BB66603-4109-1478-1C7F-CA4418093D38">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:46:00 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<engineerTo>
+<item key="79340EF0-68F4-CF4D-2F47-A5CE3680E80D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3D8509C8-0DEC-11A9-0B6B-3C6F73240204" name="Nation PK">
+<createdBy>mmose</createdBy>
+<createdTime>2026-01-08 09:10:18 UTC</createdTime>
+<ownerDesignName>olympia1</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="79340EF0-68F4-CF4D-2F47-A5CE3680E80D" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>21FD0D44-1673-3AFF-E6A4-DCD087F5F0FE</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
