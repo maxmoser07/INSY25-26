@@ -16,7 +16,11 @@ public partial class HtlContext : DbContext
     {
     }
 
+    public virtual DbSet<Fach> Faches { get; set; }
+
     public virtual DbSet<Gebäude> Gebäudes { get; set; }
+
+    public virtual DbSet<Klasse> Klasses { get; set; }
 
     public virtual DbSet<Raum> Raums { get; set; }
 
@@ -30,6 +34,38 @@ public partial class HtlContext : DbContext
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
 
+        modelBuilder.Entity<Fach>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("fach");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Bez)
+                .HasMaxLength(255)
+                .HasColumnName("bez");
+
+            entity.HasMany(d => d.Kids).WithMany(p => p.Fids)
+                .UsingEntity<Dictionary<string, object>>(
+                    "FachKlasse",
+                    r => r.HasOne<Klasse>().WithMany()
+                        .HasForeignKey("Kid")
+                        .HasConstraintName("fach_klasse_ibfk_2"),
+                    l => l.HasOne<Fach>().WithMany()
+                        .HasForeignKey("Fid")
+                        .HasConstraintName("fach_klasse_ibfk_1"),
+                    j =>
+                    {
+                        j.HasKey("Fid", "Kid")
+                            .HasName("PRIMARY")
+                            .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
+                        j.ToTable("fach_klasse");
+                        j.HasIndex(new[] { "Kid" }, "kid");
+                        j.IndexerProperty<uint>("Fid").HasColumnName("fid");
+                        j.IndexerProperty<uint>("Kid").HasColumnName("kid");
+                    });
+        });
+
         modelBuilder.Entity<Gebäude>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -39,6 +75,18 @@ public partial class HtlContext : DbContext
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
                 .HasColumnName("id");
+            entity.Property(e => e.Bez)
+                .HasMaxLength(255)
+                .HasColumnName("bez");
+        });
+
+        modelBuilder.Entity<Klasse>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("klasse");
+
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Bez)
                 .HasMaxLength(255)
                 .HasColumnName("bez");
