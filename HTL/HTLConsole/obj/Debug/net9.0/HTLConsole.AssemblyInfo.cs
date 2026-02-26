@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HTLConsole")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e2f981d4848074a607eac4f02e55c4219d6d8c5c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac765461918e0da8b871940d27ae7d1eef41efaa")]
 [assembly: System.Reflection.AssemblyProductAttribute("HTLConsole")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HTLConsole")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

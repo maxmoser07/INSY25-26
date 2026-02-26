@@ -1,32 +1,22 @@
 ﻿using HTLConsole.Models;
 using Microsoft.EntityFrameworkCore;
 
-// 1. Initialize the context
 using var db = new HtlContext();
 
-Console.WriteLine("Fetching HTL Database Records...");
-Console.WriteLine("---------------------------------");
+Console.WriteLine("--- Subjects and their Classes ---");
 
-// 2. Fetch buildings AND their related rooms using .Include
-var gebaeudeListe = await db.Gebäudes
-    .Include(g => g.Raums) // This links the tables in the query
+// Load Subjects and "Include" the linked Classes
+var faecher = await db.Faches
+    .Include(f => f.Kids) // 'Kids' is the default name EF gives to the linked Klassen collection
     .ToListAsync();
 
-// 3. Nested loop to display the data
-foreach (var g in gebaeudeListe)
+foreach (var f in faecher)
 {
-    Console.WriteLine($"Building: {g.Bez} (ID: {g.Id})");
+    Console.WriteLine($"{f.Bez}");
     
-    if (g.Raums.Any())
+    foreach (var k in f.Kids)
     {
-        foreach (var r in g.Raums)
-        {
-            Console.WriteLine($"\t Room: {r.Bez} (ID: {r.Id})");
-        }
+        Console.WriteLine($"   -{k.Bez}");
     }
-    else
-    {
-        Console.WriteLine("\t No rooms assigned)");
-    }
-    Console.WriteLine(); 
+    Console.WriteLine();
 }
