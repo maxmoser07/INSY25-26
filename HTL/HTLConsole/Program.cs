@@ -12,7 +12,7 @@ var faecher = await db.Faches
 
 foreach (var f in faecher)
 {
-    Console.WriteLine($"{f.Id} {f.Bez}");
+    Console.WriteLine($"{f.Id} {f.Bez}, {f.Kids.Count}");
     
     foreach (var k in f.Kids)
     {
