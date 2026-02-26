@@ -12,11 +12,11 @@ var faecher = await db.Faches
 
 foreach (var f in faecher)
 {
-    Console.WriteLine($"{f.Bez}");
+    Console.WriteLine($"{f.Id} {f.Bez}");
     
     foreach (var k in f.Kids)
     {
-        Console.WriteLine($"   -{k.Bez}");
+        Console.WriteLine($"   -{k.Id} {k.Bez}");
     }
     Console.WriteLine();
 }
