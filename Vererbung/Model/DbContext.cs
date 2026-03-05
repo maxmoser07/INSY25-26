@@ -16,9 +16,11 @@ public class MyDbContext : DbContext
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // This tells EF to create separate tables for the subclasses
-        // They will be linked by the Primary Key (Id)
-        modelBuilder.Entity<Animals>().ToTable("Animals");
+        // 1. Tell EF to use the TPC strategy for the base class
+        modelBuilder.Entity<Animals>().UseTpcMappingStrategy();
+
+        // 2. Map the concrete classes to their own tables
+        // Note: 'Animal' does not get a ToTable() because it won't have one!
         modelBuilder.Entity<Dog>().ToTable("Dogs");
         modelBuilder.Entity<Bird>().ToTable("Birds");
     }
