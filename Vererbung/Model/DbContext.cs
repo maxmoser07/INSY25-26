@@ -14,4 +14,12 @@ public class MyDbContext : DbContext
         // Use your MySQL connection string here
         optionsBuilder.UseMySQL("Server=127.0.0.1;Database=demo;Uid=root;Pwd=insy;");
     }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        // This tells EF to create separate tables for the subclasses
+        // They will be linked by the Primary Key (Id)
+        modelBuilder.Entity<Animals>().ToTable("Animals");
+        modelBuilder.Entity<Dog>().ToTable("Dogs");
+        modelBuilder.Entity<Bird>().ToTable("Birds");
+    }
 }
