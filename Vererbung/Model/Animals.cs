@@ -1,17 +1,21 @@
 namespace Vererbung;
 
-public class Animals
+using System.Text.Json.Serialization;
+
+[JsonDerivedType(typeof(Dog), "dog")]
+[JsonDerivedType(typeof(Bird), "bird")]
+public abstract class Animals 
 {
-    public int  Id { get; set; }
-    public DateTime Recorded { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Name { get; set; } = string.Empty;
 }
 
-public abstract class Dog : Animals
+public class Dog : Animals
 {
-    public string Breed { get; set; }
+    public string Breed { get; set; } = string.Empty;
 }
 
-public abstract class Bird : Animals
+public class Bird : Animals
 {
-    public string Wingspan { get; set; }
+    public string Wingspan { get; set; } = string.Empty;
 }

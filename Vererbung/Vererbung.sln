@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalsController", "AnimalsController\AnimalsController.csproj", "{E6869EDD-7D5E-4C15-9B0F-2FADCA04558F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalsBlazor", "AnimalsBlazor\AnimalsBlazor.csproj", "{6FA9E15F-27CA-431F-B800-177B57CFFB47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{E6869EDD-7D5E-4C15-9B0F-2FADCA04558F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6869EDD-7D5E-4C15-9B0F-2FADCA04558F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6869EDD-7D5E-4C15-9B0F-2FADCA04558F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FA9E15F-27CA-431F-B800-177B57CFFB47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA9E15F-27CA-431F-B800-177B57CFFB47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA9E15F-27CA-431F-B800-177B57CFFB47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA9E15F-27CA-431F-B800-177B57CFFB47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

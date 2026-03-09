@@ -1,0 +1,154 @@
+@page "/animals"
+@using Vererbung
+@inject HttpClient Http
+
+<PageTitle>Animal Manager</PageTitle>
+
+<div class="container">
+    <h1 class="mt-4">Animal Manager (TPC Strategy)</h1>
+    <p class="text-muted">Managing Dogs and Birds in independent tables.</p>
+
+    <div class="card mb-4 p-4 shadow-sm">
+        <h4 class="mb-3">Add New Entry</h4>
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label">Name</label>
+                <input @bind="newName" class="form-control" placeholder="e.g. Balto" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Type</label>
+                <select @bind="animalType" class="form-select">
+                    <option value="Dog">Dog</option>
+                    <option value="Bird">Bird</option>
+                </select>
+            </div>
+
+            @if (animalType == "Dog")
+            {
+                <div class="col-md-3">
+                    <label class="form-label">Breed</label>
+                    <input @bind="newBreed" class="form-control" placeholder="e.g. Husky" />
+                </div>
+            }
+            else
+            {
+                <div class="col-md-3">
+                    <label class="form-label">Wingspan</label>
+                    <input @bind="newWingspan" class="form-control" placeholder="e.g. 1.5m" />
+                </div>
+            }
+
+            <div class="col-md-3 d-flex align-items-end">
+                <button class="btn btn-success w-100" @onclick="SaveAnimal">
+                    <i class="oi oi-plus"></i> Add Animal
+                </button>
+            </div>
+        </div>
+    </div>
+
+    @if (allAnimals == null)
+    {
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th>Specific Details</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Vererbung.Animals a in allAnimals)
+                    {
+                        <tr>
+                            <td>
+                                <span class="badge @(a is Dog ? "bg-primary" : "bg-info text-dark")">
+                                    @a.GetType().Name
+                                </span>
+                            </td>
+                            <td><strong>@a.Name</strong></td>
+                            <td>
+                                @if (a is Vererbung.Dog d)
+                                {
+                                    <span class="text-muted">Breed: @d.Breed</span>
+                                }
+                                else if (a is Vererbung.Bird b)
+                                {
+                                    <span class="text-muted">Wingspan: @b.Wingspan</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <button class="btn btn-outline-danger btn-sm" @onclick="() => Delete(a.Id)">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@code {
+    // Use the full namespace to avoid conflict with the Page name
+    private List<Vererbung.Animals>? allAnimals;
+    
+    private string animalType = "Dog";
+    private string newName = "";
+    private string newBreed = "";
+    private string newWingspan = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        try 
+        {
+            // Ensure your API returns the base class list
+            allAnimals = await Http.GetFromJsonAsync<List<Vererbung.Animals>>("api/animals");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading animals: {ex.Message}");
+        }
+    }
+
+    private async Task SaveAnimal()
+    {
+        if (string.IsNullOrWhiteSpace(newName)) return;
+
+        if (animalType == "Dog")
+        {
+            var dog = new Vererbung.Dog { Name = newName, Breed = newBreed };
+            await Http.PostAsJsonAsync("api/animals/dog", dog);
+        }
+        else
+        {
+            var bird = new Vererbung.Bird { Name = newName, Wingspan = newWingspan };
+            await Http.PostAsJsonAsync("api/animals/bird", bird);
+        }
+
+        // Reset and Refresh
+        newName = ""; newBreed = ""; newWingspan = "";
+        await LoadData();
+    }
+
+    private async Task Delete(Guid id)
+    {
+        await Http.DeleteAsync($"api/animals/{id}");
+        await LoadData();
+    }
+}
