@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AnimalsController")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+067976e7df2277c05d86f84ec3536d9247ae01a3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09cfacb869de18b1df49655e0c8cf87e74c33571")]
 [assembly: System.Reflection.AssemblyProductAttribute("AnimalsController")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AnimalsController")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

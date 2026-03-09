@@ -21,15 +21,17 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Vererbung.Animals", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
 
-                    b.Property<DateTime>("Recorded")
-                        .HasColumnType("datetime(6)");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Animals");
+                    b.ToTable((string)null);
 
                     b.UseTpcMappingStrategy();
                 });
