@@ -27,6 +27,13 @@ public class AnimalsController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok(dog);
     }
+    [HttpPost("bird")]
+    public async Task<ActionResult<Bird>> PostBird(Bird bird)
+    {
+        _context.Birds.Add(bird); // Ensure this points to the Birds DbSet
+        await _context.SaveChangesAsync();
+        return Ok(bird);
+    }
 
     // DELETE: api/animals/5
     [HttpDelete("{id}")]
