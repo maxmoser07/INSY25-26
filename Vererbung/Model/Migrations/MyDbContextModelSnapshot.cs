@@ -31,9 +31,9 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable((string)null);
+                    b.ToTable("Animals", (string)null);
 
-                    b.UseTpcMappingStrategy();
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Vererbung.Bird", b =>
@@ -41,7 +41,6 @@ namespace Model.Migrations
                     b.HasBaseType("Vererbung.Animals");
 
                     b.Property<string>("Wingspan")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.ToTable("Birds", (string)null);
@@ -52,10 +51,27 @@ namespace Model.Migrations
                     b.HasBaseType("Vererbung.Animals");
 
                     b.Property<string>("Breed")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.ToTable("Dogs", (string)null);
+                });
+
+            modelBuilder.Entity("Vererbung.Bird", b =>
+                {
+                    b.HasOne("Vererbung.Animals", null)
+                        .WithOne()
+                        .HasForeignKey("Vererbung.Bird", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Vererbung.Dog", b =>
+                {
+                    b.HasOne("Vererbung.Animals", null)
+                        .WithOne()
+                        .HasForeignKey("Vererbung.Dog", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
