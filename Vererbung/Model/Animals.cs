@@ -12,10 +12,10 @@ public abstract class Animals // Standardize to plural if that's what you chose
 
 public class Dog : Animals // Must match the base class name
 {
-    public string Breed { get; set; } = string.Empty;
+    public string? Breed { get; set; } = string.Empty;
 }
 
 public class Bird : Animals // Must match the base class name
 {
-    public string Wingspan { get; set; } = string.Empty;
+    public string? Wingspan { get; set; } = string.Empty;
 }
