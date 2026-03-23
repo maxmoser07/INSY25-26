@@ -1,0 +1,70 @@
+@page "/"
+@using TimetableApp.Models
+@inject HttpClient Http
+
+<PageTitle>Add Timetable Entry</PageTitle>
+
+<div class="container mt-4" style="max-width: 500px;">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title mb-4">New Timetable Entry</h3>
+
+            <EditForm Model="@entry" OnValidSubmit="HandleSubmit">
+                <div class="mb-3">
+                    <label class="form-label">Teacher</label>
+                    <InputSelect @bind-Value="entry.Teacher" class="form-select">
+                        @foreach (var val in Enum.GetValues<Teacher>())
+                        { <option value="@val">@val</option> }
+                    </InputSelect>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Day</label>
+                    <InputSelect @bind-Value="entry.Day" class="form-select">
+                        @foreach (var val in Enum.GetValues<Weekday>())
+                        { <option value="@val">@val</option> }
+                    </InputSelect>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Subject</label>
+                    <InputSelect @bind-Value="entry.Subject" class="form-select">
+                        @foreach (var val in Enum.GetValues<Subject>())
+                        { <option value="@val">@val</option> }
+                    </InputSelect>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Hour</label>
+                    <InputSelect @bind-Value="entry.Hour" class="form-select">
+                        @foreach (var val in Enum.GetValues<LessonHour>())
+                        { <option value="@val">@((int)val). Hour</option> }
+                    </InputSelect>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">
+                    Add to Timetable
+                </button>
+            </EditForm>
+            
+            @if (!string.IsNullOrEmpty(statusMessage))
+            {
+                <div class="alert alert-info mt-3">@statusMessage</div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private TimetableEntry entry = new();
+    private string statusMessage = "";
+
+    private async Task HandleSubmit()
+    {
+        // In a real standalone app, you'd call your external MySQL API here:
+        // await Http.PostAsJsonAsync("https://your-api.com/entries", entry);
+        
+        statusMessage = $"Success! Added {entry.Subject} with {entry.Teacher}.";
+        entry = new(); // Reset
+    }
+}
