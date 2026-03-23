@@ -61,10 +61,24 @@
 
     private async Task HandleSubmit()
     {
-        // In a real standalone app, you'd call your external MySQL API here:
-        // await Http.PostAsJsonAsync("https://your-api.com/entries", entry);
-        
-        statusMessage = $"Success! Added {entry.Subject} with {entry.Teacher}.";
-        entry = new(); // Reset
+        try 
+        {
+            // 1. Send the data to your API
+            var response = await Http.PostAsJsonAsync("api/timetable", entry);
+
+            if (response.IsSuccessStatusCode)
+            {
+                statusMessage = $"Success! Added {entry.Subject} to the database.";
+                entry = new(); // Clear the form
+            }
+            else
+            {
+                statusMessage = $"Error: The API returned {response.StatusCode}";
+            }
+        }
+        catch (Exception ex)
+        {
+            statusMessage = $"Connection failed: {ex.Message}";
+        }
     }
 }
