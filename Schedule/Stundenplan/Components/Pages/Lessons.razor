@@ -1,0 +1,139 @@
+﻿@page "/add-lesson"
+@rendermode InteractiveServer
+@using Microsoft.EntityFrameworkCore
+@using Schedule.Context
+@inject ScheduleContext Db
+@inject NavigationManager Nav
+
+<h3>Schedule a New Lesson</h3>
+
+<hr />
+
+<EditForm Model="newLesson" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label>Teacher:</label>
+        <InputSelect ValueExpression="@(()=>newLesson.Tid)" 
+                     Value="@newLesson.Tid" 
+                     ValueChanged="@((int value) => OnTeacherChanged(value))" 
+                     class="form-control">
+            <option value="0">-- Select Teacher --</option>
+            @foreach (var t in allTeachers)
+            {
+                <option value="@t.Id">@t.Abbr</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="mb-3">
+        <label>Subject:</label>
+        <InputSelect ValueExpression="@(()=>newLesson.Sid)" 
+                     Value="@newLesson.Sid" 
+                     ValueChanged="@((int value) => OnSubjectChanged(value))"
+                     class="form-control" disabled="@(newLesson.Tid == 0)">
+            <option value="0">-- Select Subject --</option>
+            @foreach (var s in filteredSubjects)
+            {
+                <option value="@s.Id">@s.Desc</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="mb-3">
+        <label>Class:</label>
+        <InputSelect @bind-Value="newLesson.Cid" class="form-control" disabled="@(newLesson.Sid == 0)">
+            <option value="0">-- Select Class --</option>
+            @foreach (var c in filteredClasses)
+            {
+                <option value="@c.Id">@c.Abbr</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="mb-3">
+        <label>Day of Week:</label>
+        <InputSelect @bind-Value="newLesson.Day" class="form-control">
+            @foreach (var day in Enum.GetValues<WeekDay>())
+            {
+                <option value="@day">@day.ToString()</option>
+            }
+        </InputSelect>
+    </div>
+
+    <div class="mb-3">
+        <label>Hour/Period:</label>
+        <InputText @bind-Value="newLesson.Hour" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" disabled="@(newLesson.Cid == 0)">Save Entry</button>
+</EditForm>
+
+@code {
+    private Unterricht newLesson = new() { Day = WeekDay.Monday };
+    
+    private List<Teacher> allTeachers = new();
+    private List<Subject> filteredSubjects = new();
+    private List<Class> filteredClasses = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        allTeachers = await Db.Teachers.OrderBy(t => t.Abbr).ToListAsync();
+    }
+
+    private async Task OnTeacherChanged(int teacherId)
+    {
+        newLesson.Tid = teacherId;
+        newLesson.Sid = 0; // Reset child selections
+        newLesson.Cid = 0;
+        filteredClasses.Clear();
+
+        if (teacherId > 0)
+        {
+            // Get only subjects assigned to this teacher via T_has_S
+            filteredSubjects = await Db.TeacherSubjects
+                .Where(ts => ts.Tid == teacherId)
+                .Select(ts => ts.Subject)
+                .ToListAsync();
+        }
+        else
+        {
+            filteredSubjects.Clear();
+        }
+    }
+
+    private async Task OnSubjectChanged(int subjectId)
+    {
+        newLesson.Sid = subjectId;
+        newLesson.Cid = 0;
+
+        if (subjectId > 0)
+        {
+            // Get only classes that have this subject assigned via C_has_S
+            filteredClasses = await Db.ClassSubjects
+                .Where(cs => cs.Sid == subjectId)
+                .Select(cs => cs.Class)
+                .ToListAsync();
+        }
+        else
+        {
+            filteredClasses.Clear();
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        try 
+        {
+            Db.Lessons.Add(newLesson);
+            await Db.SaveChangesAsync();
+            Nav.NavigateTo("/");
+        }
+        catch (DbUpdateException)
+        {
+            // This triggers if a Foreign Key or Unique Index is violated
+            string errorMessage = "Error: This assignment is not allowed by the school rules or the teacher is busy.";
+        }
+    }
+}

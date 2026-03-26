@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedule", "Schedule\Schedule.csproj", "{26CEBB92-0A6C-4C45-B100-442E39B80731}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stundenplan", "Stundenplan\Stundenplan.csproj", "{859E721F-95FB-407D-94C2-4212BCEF3215}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26CEBB92-0A6C-4C45-B100-442E39B80731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26CEBB92-0A6C-4C45-B100-442E39B80731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26CEBB92-0A6C-4C45-B100-442E39B80731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26CEBB92-0A6C-4C45-B100-442E39B80731}.Release|Any CPU.Build.0 = Release|Any CPU
+		{859E721F-95FB-407D-94C2-4212BCEF3215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{859E721F-95FB-407D-94C2-4212BCEF3215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{859E721F-95FB-407D-94C2-4212BCEF3215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{859E721F-95FB-407D-94C2-4212BCEF3215}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
