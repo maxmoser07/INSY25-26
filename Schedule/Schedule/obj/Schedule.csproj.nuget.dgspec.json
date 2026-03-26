@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/max/Downloads/Schedule/Schedule/Schedule.csproj": {}
+    "/home/max/School/insy/INSY25-26/Schedule/Schedule/Schedule.csproj": {}
   },
   "projects": {
-    "/home/max/Downloads/Schedule/Schedule/Schedule.csproj": {
+    "/home/max/School/insy/INSY25-26/Schedule/Schedule/Schedule.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/max/Downloads/Schedule/Schedule/Schedule.csproj",
+        "projectUniqueName": "/home/max/School/insy/INSY25-26/Schedule/Schedule/Schedule.csproj",
         "projectName": "Schedule",
-        "projectPath": "/home/max/Downloads/Schedule/Schedule/Schedule.csproj",
+        "projectPath": "/home/max/School/insy/INSY25-26/Schedule/Schedule/Schedule.csproj",
         "packagesPath": "/home/max/.nuget/packages/",
-        "outputPath": "/home/max/Downloads/Schedule/Schedule/obj/",
+        "outputPath": "/home/max/School/insy/INSY25-26/Schedule/Schedule/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/max/.nuget/NuGet/NuGet.Config"

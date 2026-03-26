@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ylO5eGVbGLg=",
+  "dgSpecHash": "TwilBEmZUqc=",
   "success": true,
-  "projectFilePath": "/home/max/Downloads/Schedule/Schedule/Schedule.csproj",
+  "projectFilePath": "/home/max/School/insy/INSY25-26/Schedule/Schedule/Schedule.csproj",
   "expectedPackageFiles": [
     "/home/max/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/max/.nuget/packages/microsoft.bcl.asyncinterfaces/7.0.0/microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",

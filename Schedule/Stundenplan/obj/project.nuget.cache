@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aiKe+g29D00=",
+  "dgSpecHash": "P11PC1qB2u8=",
   "success": true,
-  "projectFilePath": "/home/max/Downloads/Schedule/Stundenplan/Stundenplan.csproj",
+  "projectFilePath": "/home/max/School/insy/INSY25-26/Schedule/Stundenplan/Stundenplan.csproj",
   "expectedPackageFiles": [
     "/home/max/.nuget/packages/microsoft.entityframeworkcore/9.0.0/microsoft.entityframeworkcore.9.0.0.nupkg.sha512",
     "/home/max/.nuget/packages/microsoft.entityframeworkcore.abstractions/9.0.0/microsoft.entityframeworkcore.abstractions.9.0.0.nupkg.sha512",
