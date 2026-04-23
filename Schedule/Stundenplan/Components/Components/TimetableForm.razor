@@ -1,0 +1,51 @@
+@using TimetableApp.Models
+@inject HttpClient Http
+
+<div class="card p-3 mb-4">
+    <h5>Add New Entry</h5>
+    <EditForm Model="entry" OnValidSubmit="HandleSubmit">
+        <div class="row g-2">
+            <div class="col-md-3">
+                <label>Class</label>
+                <InputSelect @bind-Value="entry.TargetClass" class="form-select">
+                    @foreach (var val in Enum.GetValues<SchoolClass>())
+                    { <option value="@val">@val</option> }
+                </InputSelect>
+            </div>
+            <div class="col-md-3">
+                <label>Subject</label>
+                <InputSelect @bind-Value="entry.Subject" class="form-select">
+                    @foreach (var val in Enum.GetValues<Subject>())
+                    { <option value="@val">@val</option> }
+                </InputSelect>
+            </div>
+            <div class="col-md-3">
+                <label>Time Slot</label>
+                <InputSelect @bind-Value="entry.Hour" class="form-select">
+                    <option value="First">1st (08:00 - 09:00)</option>
+                    <option value="Second">2nd (09:00 - 10:00)</option>
+                    <option value="Third">3rd (10:15 - 11:15)</option>
+                    <option value="Fourth">4th (11:15 - 12:15)</option>
+                </InputSelect>
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">Save</button>
+            </div>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    private TimetableEntry entry = new();
+    [Parameter] public EventCallback OnEntryAdded { get; set; }
+
+    private async Task HandleSubmit()
+    {
+        var response = await Http.PostAsJsonAsync("api/timetable", entry);
+        if (response.IsSuccessStatusCode)
+        {
+            entry = new(); // Reset
+            await OnEntryAdded.InvokeAsync(); // Tell parent to refresh list
+        }
+    }
+}
