@@ -1,0 +1,62 @@
+@using TimetableApp.Models
+
+<div class="mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>Weekly Schedule</h4>
+        <div class="d-flex align-items-center">
+            <span class="me-2">Show Class:</span>
+            <select class="form-select w-auto" @onchange="OnClassChanged">
+                @foreach (var val in Enum.GetValues<SchoolClass>())
+                { <option value="@val">@val</option> }
+            </select>
+        </div>
+    </div>
+
+    <table class="table table-bordered text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Time</th>
+                @foreach (var day in Enum.GetValues<Weekday>()) { <th>@day</th> }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hour in Enum.GetValues<LessonHour>())
+            {
+                <tr>
+                    <td class="fw-bold">@GetTimeRange(hour)</td>
+                    @foreach (var day in Enum.GetValues<Weekday>())
+                    {
+                        var cell = Entries.FirstOrDefault(e => e.Day == day && e.Hour == hour && e.TargetClass == SelectedClass);
+                        <td>
+                            @if (cell != null)
+                            {
+                                <div class="badge bg-info text-dark d-block">
+                                    @cell.Subject <br/> <small>@cell.Teacher</small>
+                                </div>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    [Parameter] public List<TimetableEntry> Entries { get; set; } = new();
+    private SchoolClass SelectedClass { get; set; } = SchoolClass.Class9A;
+
+    private void OnClassChanged(ChangeEventArgs e)
+    {
+        if (Enum.TryParse<SchoolClass>(e.Value?.ToString(), out var result))
+            SelectedClass = result;
+    }
+
+    private string GetTimeRange(LessonHour hour) => hour switch
+    {
+        LessonHour.First => "08:00 - 09:00",
+        LessonHour.Second => "09:00 - 10:00",
+        LessonHour.Third => "10:15 - 11:15",
+        _ => "11:15 - 12:15"
+    };
+}
