@@ -1,0 +1,9 @@
+use scott;
+//1. Beispiel
+db.depts.find({})
+
+//2. Beispiel
+db.emps.find({ dept_id: 10 }, { ENAME: 1, JOB: 1, HIREDATE: 1, _id: 0 })
+
+//3. Beispiel
+db.emps.find({ JOB: "CLERK" }, { ENAME: 1, JOB: 1, SAL: 1, _id: 0 })
