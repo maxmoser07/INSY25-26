@@ -7,3 +7,13 @@ db.emps.find({ dept_id: 10 }, { ENAME: 1, JOB: 1, HIREDATE: 1, _id: 0 })
 
 //3. Beispiel
 db.emps.find({ JOB: "CLERK" }, { ENAME: 1, JOB: 1, SAL: 1, _id: 0 })
+
+//4. Beispiel
+db.emps.find({ dept_id: { $ne: 10 } })
+
+//5. Beispiel
+db.emps.find({ $expr: { $gt: ["$COMM", "$SAL"] } })
+
+//6. Beispiel
+db.emps.find({ HIREDATE: new Date("1981-12-03") })
+
