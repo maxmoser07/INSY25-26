@@ -17,3 +17,13 @@ db.emps.find({ $expr: { $gt: ["$COMM", "$SAL"] } })
 //6. Beispiel
 db.emps.find({ HIREDATE: new Date("1981-12-03") })
 
+//7. Beispiel
+db.emps.find({
+    $or: [ { SAL: { $lt: 1250 } }, { SAL: { $gt: 1600 } } ]
+    }, { ENAME: 1, SAL: 1, _id: 0 })
+
+//8. Beispiel
+db.emps.find({ JOB: { $nin: ["MANAGER", "PRESIDENT"] } })
+
+//9. Beispiel
+db.emps.find({ ENAME: /^..A/ }, { ENAME: 1, _id: 0 })
