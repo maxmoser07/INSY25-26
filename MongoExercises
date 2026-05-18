@@ -59,3 +59,17 @@ db.emps.aggregate([
     ])
 
 //17. Beispiel
+db.emps.aggregate([
+    { $group: {
+        _id: null,
+        total_cost: { $sum: { $add: ["$SAL", { $ifNull: ["$COMM", 0] }] } }
+        }}
+    ])
+
+//18. Beispiel
+db.emps.aggregate([
+    { $group: {
+        _id: null,
+        avg_bonus: { $avg: { $ifNull: ["$COMM", 250] } }
+        }}
+    ])
