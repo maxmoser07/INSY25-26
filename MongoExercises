@@ -37,3 +37,25 @@ db.emps.find({}).sort({ COMM: 1 })
 //12. Beispiel
 db.emps.find({ JOB: { $nin: ["MANAGER", "PRESIDENT"] } })
 .sort({ dept_id: 1, HIREDATE: -1 })
+
+//13. Beispiel
+db.emps.find({ ENAME: /^.{6}$/ }, { ENAME: 1, _id: 0 })
+
+//14. Beispiel
+db.emps.aggregate([
+    { $match: { dept_id: 30 } },
+    { $project: { "Staff_Info": { $concat: ["$ENAME", " - ", "$JOB"] }, _id: 0 } }
+    ])
+
+//16. Beispiel
+db.emps.aggregate([
+    { $project: {
+        ENAME: 1,
+        MONTHLY: "$SAL",
+        DAILY: { $divide: ["$SAL", 22] },
+        HOURLY: { $divide: ["$SAL", { $multiply: [22, 8] }] },
+        _id: 0
+        }}
+    ])
+
+//17. Beispiel
