@@ -27,3 +27,13 @@ db.emps.find({ JOB: { $nin: ["MANAGER", "PRESIDENT"] } })
 
 //9. Beispiel
 db.emps.find({ ENAME: /^..A/ }, { ENAME: 1, _id: 0 })
+
+//10. Beispiel
+db.emps.find({ COMM: { $exists: true, $ne: null } }, { id: 1, ENAME: 1, JOB: 1, _id: 0 })
+
+//11. Beispiel
+db.emps.find({}).sort({ COMM: 1 })
+
+//12. Beispiel
+db.emps.find({ JOB: { $nin: ["MANAGER", "PRESIDENT"] } })
+.sort({ dept_id: 1, HIREDATE: -1 })
