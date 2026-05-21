@@ -73,3 +73,33 @@ db.emps.aggregate([
         avg_bonus: { $avg: { $ifNull: ["$COMM", 250] } }
         }}
     ])
+
+//19. Beispiel
+db.emps.aggregate([
+    { $match: { dept_id: 30 } },
+    { $group: {
+        _id: null,
+        count_sal: { $sum: { $cond: [{ $gt: ["$SAL", 0] }, 1, 0] } },
+        count_comm: { $sum: { $cond: [{ $and: [{ exists: "$COMM" }, { ne: ["$COMM", null] }] }, 1, 0] } }
+        }}
+    ])
+
+//20. Beispiel
+db.emps.aggregate([
+    { $group: { _id: "$JOB" } },
+    { $count: "distinct_jobs" }
+    ])
+
+//22. Beispiel
+db.emps.aggregate([
+    { $match: { dept_id: 30 } },
+    { $group: {
+        _id: null,
+        sum_sal: { $sum: { $ifNull: ["$SAL", 0] } },
+        count_sal: { $sum: 1 },
+        avg_sal: { $avg: { $ifNull: ["$SAL", 0] } },
+        sum_comm: { $sum: { $ifNull: ["$COMM", 0] } },
+        count_comm: { $sum: 1 },
+        avg_comm: { $avg: { $ifNull: ["$COMM", 0] } }
+        }}
+    ])
