@@ -160,3 +160,43 @@ db.emps.aggregate([
         count_comm: { $sum: { $cond: [{ $ifNull: ["$COMM", false] }, 1, 0] } }
         }}
     ])
+
+//35. Beispiel
+db.emps.aggregate([
+    { $group: {
+        _id: "$dept_id",
+        min_sal: { $min: "$SAL" },
+        max_sal: { $max: "$SAL" },
+        avg_sal: { $avg: "$SAL" }
+        }}
+    ])
+
+//36. Beispiel
+db.emps.aggregate([
+    { $match: { JOB: { $nin: ["MANAGER", "PRESIDENT"] } } },
+    { $group: {
+        _id: "$dept_id",
+        min_sal: { $min: "$SAL" },
+        max_sal: { $max: "$SAL" },
+        avg_sal: { $avg: "$SAL" },
+        employee_count: { $sum: 1 }
+        }}
+    ])
+
+//37. Beispiel
+db.emps.aggregate([
+    { $match: { $or: [ { COMM: { $exists: false } }, { COMM: null }, { COMM: 0 } ] } },
+    { $group: { _id: "$JOB", avg_sal: { $avg: "$SAL" } } }
+    ])
+    
+//38. Beispiel
+db.emps.aggregate([
+    { $project: {
+        dept_id: 1,
+        monthly_total: { $add: ["$SAL", { $ifNull: ["$COMM", 100] }] }
+        }},
+    { $group: {
+        _id: "$dept_id",
+        total_annual_payment: { $sum: { $multiply: ["$monthly_total", 12] } }
+        }}
+    ])
