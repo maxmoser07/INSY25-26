@@ -119,3 +119,20 @@ db.emps.aggregate([
 
 //25. Beispiel
 db.emps.find({ JOB: { $in: ["MANAGER", "PRESIDENT"] } })
+
+//26. Beispiel
+db.emps.find(
+    { $expr: { $gt: ["$COMM", { $multiply: ["$SAL", 0.25] }] } },
+    { ENAME: 1, JOB: 1, COMM: 1, _id: 0 }
+    )
+
+//27. Beispiel
+db.emps.aggregate([
+    { $project: { total_income: { $add: ["$SAL", { $ifNull: ["$COMM", 0] }] } } },
+    { $group: { _id: null, min_income: { $min: "$total_income" } } }
+    ])
+
+//28. Beispiel
+db.emps.aggregate([
+    { $group: { _id: null, oldest_hire_date: { $min: "$HIREDATE" } } }
+    ])
