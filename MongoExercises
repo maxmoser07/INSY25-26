@@ -103,3 +103,19 @@ db.emps.aggregate([
         avg_comm: { $avg: { $ifNull: ["$COMM", 0] } }
         }}
     ])
+
+//23. Beispiel
+db.emps.aggregate([
+    { $match: { JOB: { $nin: ["MANAGER", "PRESIDENT"] } } },
+    { $group: { _id: { dept_id: "$dept_id", job: "$JOB" } } },
+    { $group: { _id: "$_id.dept_id", distinct_job_count: { $sum: 1 } } }
+    ])
+
+//24. Beispiel
+db.emps.aggregate([
+    { $group: { _id: "$dept_id", count: { $sum: 1 } } },
+    { $group: { _id: null, avg_employees_per_dept: { $avg: "$count" } } }
+    ])
+
+//25. Beispiel
+db.emps.find({ JOB: { $in: ["MANAGER", "PRESIDENT"] } })
