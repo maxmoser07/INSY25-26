@@ -136,3 +136,27 @@ db.emps.aggregate([
 db.emps.aggregate([
     { $group: { _id: null, oldest_hire_date: { $min: "$HIREDATE" } } }
     ])
+
+//29. Beispiel
+db.emps.aggregate([
+    { $group: { _id: { dept_id: "$dept_id", job: "$JOB" }, headcount: { $sum: 1 } } },
+    { $project: { dept_id: "$_id.dept_id", job: "$_id.job", headcount: 1, _id: 0 } }
+    ])
+
+//30. Beispiel
+db.emps.aggregate([
+    { $project: { dept_id: 1, total_income: { $add: ["$SAL", { $ifNull: ["$COMM", 0] }] } } },
+    { $group: { _id: "$dept_id", max_income: { $max: "$total_income" } } },
+    { $group: { _id: null, lowest_max_income: { $min: "$max_income" } } }
+    ])
+
+//34. Beispiel
+db.emps.aggregate([
+    { $match: { dept_id: 30 } },
+    { $group: {
+        _id: null,
+        min_sal: { $min: "$SAL" }, max_sal: { $max: "$SAL" }, avg_sal: { $avg: "$SAL" },
+        min_comm: { $min: "$COMM" }, max_comm: { $max: "$COMM" }, avg_comm: { $avg: "$COMM" },
+        count_comm: { $sum: { $cond: [{ $ifNull: ["$COMM", false] }, 1, 0] } }
+        }}
+    ])
