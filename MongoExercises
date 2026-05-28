@@ -188,7 +188,7 @@ db.emps.aggregate([
     { $match: { $or: [ { COMM: { $exists: false } }, { COMM: null }, { COMM: 0 } ] } },
     { $group: { _id: "$JOB", avg_sal: { $avg: "$SAL" } } }
     ])
-    
+
 //38. Beispiel
 db.emps.aggregate([
     { $project: {
@@ -199,4 +199,25 @@ db.emps.aggregate([
         _id: "$dept_id",
         total_annual_payment: { $sum: { $multiply: ["$monthly_total", 12] } }
         }}
+    ])
+
+//40. Beispiel
+db.emps.aggregate([
+    { $group: { _id: "$JOB", avg_sal: { $avg: "$SAL" } } },
+    { $match: { avg_sal: { $gt: 1500 } } },
+    { $sort: { avg_sal: 1 } }
+    ])
+
+//41. Beispiel
+db.emps.aggregate([
+    { $match: { JOB: "CLERK" } },
+    { $group: { _id: "$dept_id", clerk_count: { $sum: 1 } } },
+    { $match: { clerk_count: { $gte: 2 } } }
+    ])
+
+//43. Beispiel
+db.emps.aggregate([
+    { $group: { _id: "$JOB", avg_sal: { $avg: "$SAL" } } },
+    { $match: { avg_sal: { $gt: 1500 } } },
+    { $sort: { _id: 1 } }
     ])
