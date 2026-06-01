@@ -221,3 +221,15 @@ db.emps.aggregate([
     { $match: { avg_sal: { $gt: 1500 } } },
     { $sort: { _id: 1 } }
     ])
+
+//46. Beispiel
+db.emps.aggregate([
+  { $lookup: {
+      from: "emps",
+      pipeline: [{ $match: { ENAME: "JONES" } }],
+      as: "jones_info"
+  }},
+  { $unwind: "$jones_info" },
+  { $match: { $expr: { $gt: ["$SAL", "$jones_info.SAL"] } } },
+  { $project: { jones_info: 0 } }
+])
