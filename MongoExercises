@@ -261,3 +261,15 @@ db.emps.aggregate([
   { $match: { $expr: { $lt: ["$SAL", { $multiply: ["$pres.SAL", 0.30] }] } } },
   { $project: { pres: 0 } }
 ])
+
+//49. Beispiel
+db.depts.aggregate([
+  { $lookup: {
+      from: "emps",
+      localField: "DEPTNO",
+      foreignField: "dept_id",
+      as: "staff"
+  }},
+  { $match: { staff: { $size: 0 } } },
+  { $project: { staff: 0 } }
+])
