@@ -233,3 +233,19 @@ db.emps.aggregate([
   { $match: { $expr: { $gt: ["$SAL", "$jones_info.SAL"] } } },
   { $project: { jones_info: 0 } }
 ])
+
+//47. Beispiel
+db.emps.aggregate([
+  { $lookup: {
+      from: "emps",
+      localField: "parent_id",
+      foreignField: "id",
+      as: "manager"
+  }},
+  { $unwind: "$manager" },
+  { $match: { $expr: { $gt: ["$SAL", "$manager.SAL"] } } },
+  { $project: {
+      Employee: "$ENAME", Emp_Sal: "$SAL",
+      Manager: "$manager.ENAME", Mgr_Sal: "$manager.SAL", _id: 0
+  }}
+])
