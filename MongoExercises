@@ -298,3 +298,15 @@ use scott;
         { $limit: 1 },
         { $project: { ENAME: 1, _id: 0 } }
         ])
+    
+    //Beispiel 53
+    db.depts.aggregate([
+        { $match: { LOC: "NEW YORK" } },
+        { $lookup: {
+            from: "emps",
+            localField: "DEPTNO",
+            foreignField: "dept_id",
+            as: "staff"
+            }},
+        { $project: { headcount: { $size: "$staff" }, _id: 0 } }
+        ])
