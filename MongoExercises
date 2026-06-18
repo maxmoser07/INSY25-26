@@ -1,275 +1,300 @@
 use scott;
-//1. Beispiel
-db.depts.find({})
+    //1. Beispiel
+    db.depts.find({})
 
-//2. Beispiel
-db.emps.find({ dept_id: 10 }, { ENAME: 1, JOB: 1, HIREDATE: 1, _id: 0 })
+    //2. Beispiel
+    db.emps.find({ dept_id: 10 }, { ENAME: 1, JOB: 1, HIREDATE: 1, _id: 0 })
 
-//3. Beispiel
-db.emps.find({ JOB: "CLERK" }, { ENAME: 1, JOB: 1, SAL: 1, _id: 0 })
+    //3. Beispiel
+    db.emps.find({ JOB: "CLERK" }, { ENAME: 1, JOB: 1, SAL: 1, _id: 0 })
 
-//4. Beispiel
-db.emps.find({ dept_id: { $ne: 10 } })
+    //4. Beispiel
+    db.emps.find({ dept_id: { $ne: 10 } })
 
-//5. Beispiel
-db.emps.find({ $expr: { $gt: ["$COMM", "$SAL"] } })
+    //5. Beispiel
+    db.emps.find({ $expr: { $gt: ["$COMM", "$SAL"] } })
 
-//6. Beispiel
-db.emps.find({ HIREDATE: new Date("1981-12-03") })
+    //6. Beispiel
+    db.emps.find({ HIREDATE: new Date("1981-12-03") })
 
-//7. Beispiel
-db.emps.find({
-    $or: [ { SAL: { $lt: 1250 } }, { SAL: { $gt: 1600 } } ]
-    }, { ENAME: 1, SAL: 1, _id: 0 })
+    //7. Beispiel
+    db.emps.find({
+        $or: [ { SAL: { $lt: 1250 } }, { SAL: { $gt: 1600 } } ]
+        }, { ENAME: 1, SAL: 1, _id: 0 })
 
-//8. Beispiel
-db.emps.find({ JOB: { $nin: ["MANAGER", "PRESIDENT"] } })
+    //8. Beispiel
+    db.emps.find({ JOB: { $nin: ["MANAGER", "PRESIDENT"] } })
 
-//9. Beispiel
-db.emps.find({ ENAME: /^..A/ }, { ENAME: 1, _id: 0 })
+    //9. Beispiel
+    db.emps.find({ ENAME: /^..A/ }, { ENAME: 1, _id: 0 })
 
-//10. Beispiel
-db.emps.find({ COMM: { $exists: true, $ne: null } }, { id: 1, ENAME: 1, JOB: 1, _id: 0 })
+    //10. Beispiel
+    db.emps.find({ COMM: { $exists: true, $ne: null } }, { id: 1, ENAME: 1, JOB: 1, _id: 0 })
 
-//11. Beispiel
-db.emps.find({}).sort({ COMM: 1 })
+    //11. Beispiel
+    db.emps.find({}).sort({ COMM: 1 })
 
-//12. Beispiel
-db.emps.find({ JOB: { $nin: ["MANAGER", "PRESIDENT"] } })
-.sort({ dept_id: 1, HIREDATE: -1 })
+    //12. Beispiel
+    db.emps.find({ JOB: { $nin: ["MANAGER", "PRESIDENT"] } })
+        .sort({ dept_id: 1, HIREDATE: -1 })
 
-//13. Beispiel
-db.emps.find({ ENAME: /^.{6}$/ }, { ENAME: 1, _id: 0 })
+    //13. Beispiel
+    db.emps.find({ ENAME: /^.{6}$/ }, { ENAME: 1, _id: 0 })
 
-//14. Beispiel
-db.emps.aggregate([
-    { $match: { dept_id: 30 } },
-    { $project: { "Staff_Info": { $concat: ["$ENAME", " - ", "$JOB"] }, _id: 0 } }
-    ])
+    //14. Beispiel
+    db.emps.aggregate([
+        { $match: { dept_id: 30 } },
+        { $project: { "Staff_Info": { $concat: ["$ENAME", " - ", "$JOB"] }, _id: 0 } }
+        ])
 
-//16. Beispiel
-db.emps.aggregate([
-    { $project: {
-        ENAME: 1,
-        MONTHLY: "$SAL",
-        DAILY: { $divide: ["$SAL", 22] },
-        HOURLY: { $divide: ["$SAL", { $multiply: [22, 8] }] },
-        _id: 0
-        }}
-    ])
+    //16. Beispiel
+    db.emps.aggregate([
+        { $project: {
+            ENAME: 1,
+            MONTHLY: "$SAL",
+            DAILY: { $divide: ["$SAL", 22] },
+            HOURLY: { $divide: ["$SAL", { $multiply: [22, 8] }] },
+            _id: 0
+            }}
+        ])
 
-//17. Beispiel
-db.emps.aggregate([
-    { $group: {
-        _id: null,
-        total_cost: { $sum: { $add: ["$SAL", { $ifNull: ["$COMM", 0] }] } }
-        }}
-    ])
+    //17. Beispiel
+    db.emps.aggregate([
+        { $group: {
+            _id: null,
+            total_cost: { $sum: { $add: ["$SAL", { $ifNull: ["$COMM", 0] }] } }
+            }}
+        ])
 
-//18. Beispiel
-db.emps.aggregate([
-    { $group: {
-        _id: null,
-        avg_bonus: { $avg: { $ifNull: ["$COMM", 250] } }
-        }}
-    ])
+    //18. Beispiel
+    db.emps.aggregate([
+        { $group: {
+            _id: null,
+            avg_bonus: { $avg: { $ifNull: ["$COMM", 250] } }
+            }}
+        ])
 
-//19. Beispiel
-db.emps.aggregate([
-    { $match: { dept_id: 30 } },
-    { $group: {
-        _id: null,
-        count_sal: { $sum: { $cond: [{ $gt: ["$SAL", 0] }, 1, 0] } },
-        count_comm: { $sum: { $cond: [{ $and: [{ exists: "$COMM" }, { ne: ["$COMM", null] }] }, 1, 0] } }
-        }}
-    ])
+    //19. Beispiel
+    db.emps.aggregate([
+        { $match: { dept_id: 30 } },
+        { $group: {
+            _id: null,
+            count_sal: { $sum: { $cond: [{ $gt: ["$SAL", 0] }, 1, 0] } },
+            count_comm: { $sum: { $cond: [{ $and: [{ exists: "$COMM" }, { ne: ["$COMM", null] }] }, 1, 0] } }
+            }}
+        ])
 
-//20. Beispiel
-db.emps.aggregate([
-    { $group: { _id: "$JOB" } },
-    { $count: "distinct_jobs" }
-    ])
+    //20. Beispiel
+    db.emps.aggregate([
+        { $group: { _id: "$JOB" } },
+        { $count: "distinct_jobs" }
+        ])
 
-//22. Beispiel
-db.emps.aggregate([
-    { $match: { dept_id: 30 } },
-    { $group: {
-        _id: null,
-        sum_sal: { $sum: { $ifNull: ["$SAL", 0] } },
-        count_sal: { $sum: 1 },
-        avg_sal: { $avg: { $ifNull: ["$SAL", 0] } },
-        sum_comm: { $sum: { $ifNull: ["$COMM", 0] } },
-        count_comm: { $sum: 1 },
-        avg_comm: { $avg: { $ifNull: ["$COMM", 0] } }
-        }}
-    ])
+    //22. Beispiel
+    db.emps.aggregate([
+        { $match: { dept_id: 30 } },
+        { $group: {
+            _id: null,
+            sum_sal: { $sum: { $ifNull: ["$SAL", 0] } },
+            count_sal: { $sum: 1 },
+            avg_sal: { $avg: { $ifNull: ["$SAL", 0] } },
+            sum_comm: { $sum: { $ifNull: ["$COMM", 0] } },
+            count_comm: { $sum: 1 },
+            avg_comm: { $avg: { $ifNull: ["$COMM", 0] } }
+            }}
+        ])
 
-//23. Beispiel
-db.emps.aggregate([
-    { $match: { JOB: { $nin: ["MANAGER", "PRESIDENT"] } } },
-    { $group: { _id: { dept_id: "$dept_id", job: "$JOB" } } },
-    { $group: { _id: "$_id.dept_id", distinct_job_count: { $sum: 1 } } }
-    ])
+    //23. Beispiel
+    db.emps.aggregate([
+        { $match: { JOB: { $nin: ["MANAGER", "PRESIDENT"] } } },
+        { $group: { _id: { dept_id: "$dept_id", job: "$JOB" } } },
+        { $group: { _id: "$_id.dept_id", distinct_job_count: { $sum: 1 } } }
+        ])
 
-//24. Beispiel
-db.emps.aggregate([
-    { $group: { _id: "$dept_id", count: { $sum: 1 } } },
-    { $group: { _id: null, avg_employees_per_dept: { $avg: "$count" } } }
-    ])
+    //24. Beispiel
+    db.emps.aggregate([
+        { $group: { _id: "$dept_id", count: { $sum: 1 } } },
+        { $group: { _id: null, avg_employees_per_dept: { $avg: "$count" } } }
+        ])
 
-//25. Beispiel
-db.emps.find({ JOB: { $in: ["MANAGER", "PRESIDENT"] } })
+    //25. Beispiel
+    db.emps.find({ JOB: { $in: ["MANAGER", "PRESIDENT"] } })
 
-//26. Beispiel
-db.emps.find(
-    { $expr: { $gt: ["$COMM", { $multiply: ["$SAL", 0.25] }] } },
-    { ENAME: 1, JOB: 1, COMM: 1, _id: 0 }
-    )
+    //26. Beispiel
+    db.emps.find(
+        { $expr: { $gt: ["$COMM", { $multiply: ["$SAL", 0.25] }] } },
+        { ENAME: 1, JOB: 1, COMM: 1, _id: 0 }
+        )
 
-//27. Beispiel
-db.emps.aggregate([
-    { $project: { total_income: { $add: ["$SAL", { $ifNull: ["$COMM", 0] }] } } },
-    { $group: { _id: null, min_income: { $min: "$total_income" } } }
-    ])
+    //27. Beispiel
+    db.emps.aggregate([
+        { $project: { total_income: { $add: ["$SAL", { $ifNull: ["$COMM", 0] }] } } },
+        { $group: { _id: null, min_income: { $min: "$total_income" } } }
+        ])
 
-//28. Beispiel
-db.emps.aggregate([
-    { $group: { _id: null, oldest_hire_date: { $min: "$HIREDATE" } } }
-    ])
+    //28. Beispiel
+    db.emps.aggregate([
+        { $group: { _id: null, oldest_hire_date: { $min: "$HIREDATE" } } }
+        ])
 
-//29. Beispiel
-db.emps.aggregate([
-    { $group: { _id: { dept_id: "$dept_id", job: "$JOB" }, headcount: { $sum: 1 } } },
-    { $project: { dept_id: "$_id.dept_id", job: "$_id.job", headcount: 1, _id: 0 } }
-    ])
+    //29. Beispiel
+    db.emps.aggregate([
+        { $group: { _id: { dept_id: "$dept_id", job: "$JOB" }, headcount: { $sum: 1 } } },
+        { $project: { dept_id: "$_id.dept_id", job: "$_id.job", headcount: 1, _id: 0 } }
+        ])
 
-//30. Beispiel
-db.emps.aggregate([
-    { $project: { dept_id: 1, total_income: { $add: ["$SAL", { $ifNull: ["$COMM", 0] }] } } },
-    { $group: { _id: "$dept_id", max_income: { $max: "$total_income" } } },
-    { $group: { _id: null, lowest_max_income: { $min: "$max_income" } } }
-    ])
+    //30. Beispiel
+    db.emps.aggregate([
+        { $project: { dept_id: 1, total_income: { $add: ["$SAL", { $ifNull: ["$COMM", 0] }] } } },
+        { $group: { _id: "$dept_id", max_income: { $max: "$total_income" } } },
+        { $group: { _id: null, lowest_max_income: { $min: "$max_income" } } }
+        ])
 
-//34. Beispiel
-db.emps.aggregate([
-    { $match: { dept_id: 30 } },
-    { $group: {
-        _id: null,
-        min_sal: { $min: "$SAL" }, max_sal: { $max: "$SAL" }, avg_sal: { $avg: "$SAL" },
-        min_comm: { $min: "$COMM" }, max_comm: { $max: "$COMM" }, avg_comm: { $avg: "$COMM" },
-        count_comm: { $sum: { $cond: [{ $ifNull: ["$COMM", false] }, 1, 0] } }
-        }}
-    ])
+    //34. Beispiel
+    db.emps.aggregate([
+        { $match: { dept_id: 30 } },
+        { $group: {
+            _id: null,
+            min_sal: { $min: "$SAL" }, max_sal: { $max: "$SAL" }, avg_sal: { $avg: "$SAL" },
+            min_comm: { $min: "$COMM" }, max_comm: { $max: "$COMM" }, avg_comm: { $avg: "$COMM" },
+            count_comm: { $sum: { $cond: [{ $ifNull: ["$COMM", false] }, 1, 0] } }
+            }}
+        ])
 
-//35. Beispiel
-db.emps.aggregate([
-    { $group: {
-        _id: "$dept_id",
-        min_sal: { $min: "$SAL" },
-        max_sal: { $max: "$SAL" },
-        avg_sal: { $avg: "$SAL" }
-        }}
-    ])
+    //35. Beispiel
+    db.emps.aggregate([
+        { $group: {
+            _id: "$dept_id",
+            min_sal: { $min: "$SAL" },
+            max_sal: { $max: "$SAL" },
+            avg_sal: { $avg: "$SAL" }
+            }}
+        ])
 
-//36. Beispiel
-db.emps.aggregate([
-    { $match: { JOB: { $nin: ["MANAGER", "PRESIDENT"] } } },
-    { $group: {
-        _id: "$dept_id",
-        min_sal: { $min: "$SAL" },
-        max_sal: { $max: "$SAL" },
-        avg_sal: { $avg: "$SAL" },
-        employee_count: { $sum: 1 }
-        }}
-    ])
+    //36. Beispiel
+    db.emps.aggregate([
+        { $match: { JOB: { $nin: ["MANAGER", "PRESIDENT"] } } },
+        { $group: {
+            _id: "$dept_id",
+            min_sal: { $min: "$SAL" },
+            max_sal: { $max: "$SAL" },
+            avg_sal: { $avg: "$SAL" },
+            employee_count: { $sum: 1 }
+            }}
+        ])
 
-//37. Beispiel
-db.emps.aggregate([
-    { $match: { $or: [ { COMM: { $exists: false } }, { COMM: null }, { COMM: 0 } ] } },
-    { $group: { _id: "$JOB", avg_sal: { $avg: "$SAL" } } }
-    ])
+    //37. Beispiel
+    db.emps.aggregate([
+        { $match: { $or: [ { COMM: { $exists: false } }, { COMM: null }, { COMM: 0 } ] } },
+        { $group: { _id: "$JOB", avg_sal: { $avg: "$SAL" } } }
+        ])
 
-//38. Beispiel
-db.emps.aggregate([
-    { $project: {
-        dept_id: 1,
-        monthly_total: { $add: ["$SAL", { $ifNull: ["$COMM", 100] }] }
-        }},
-    { $group: {
-        _id: "$dept_id",
-        total_annual_payment: { $sum: { $multiply: ["$monthly_total", 12] } }
-        }}
-    ])
+    //38. Beispiel
+    db.emps.aggregate([
+        { $project: {
+            dept_id: 1,
+            monthly_total: { $add: ["$SAL", { $ifNull: ["$COMM", 100] }] }
+            }},
+        { $group: {
+            _id: "$dept_id",
+            total_annual_payment: { $sum: { $multiply: ["$monthly_total", 12] } }
+            }}
+        ])
 
-//40. Beispiel
-db.emps.aggregate([
-    { $group: { _id: "$JOB", avg_sal: { $avg: "$SAL" } } },
-    { $match: { avg_sal: { $gt: 1500 } } },
-    { $sort: { avg_sal: 1 } }
-    ])
+    //40. Beispiel
+    db.emps.aggregate([
+        { $group: { _id: "$JOB", avg_sal: { $avg: "$SAL" } } },
+        { $match: { avg_sal: { $gt: 1500 } } },
+        { $sort: { avg_sal: 1 } }
+        ])
 
-//41. Beispiel
-db.emps.aggregate([
-    { $match: { JOB: "CLERK" } },
-    { $group: { _id: "$dept_id", clerk_count: { $sum: 1 } } },
-    { $match: { clerk_count: { $gte: 2 } } }
-    ])
+    //41. Beispiel
+    db.emps.aggregate([
+        { $match: { JOB: "CLERK" } },
+        { $group: { _id: "$dept_id", clerk_count: { $sum: 1 } } },
+        { $match: { clerk_count: { $gte: 2 } } }
+        ])
 
-//43. Beispiel
-db.emps.aggregate([
-    { $group: { _id: "$JOB", avg_sal: { $avg: "$SAL" } } },
-    { $match: { avg_sal: { $gt: 1500 } } },
-    { $sort: { _id: 1 } }
-    ])
+    //43. Beispiel
+    db.emps.aggregate([
+        { $group: { _id: "$JOB", avg_sal: { $avg: "$SAL" } } },
+        { $match: { avg_sal: { $gt: 1500 } } },
+        { $sort: { _id: 1 } }
+        ])
 
-//46. Beispiel
-db.emps.aggregate([
-  { $lookup: {
-      from: "emps",
-      pipeline: [{ $match: { ENAME: "JONES" } }],
-      as: "jones_info"
-  }},
-  { $unwind: "$jones_info" },
-  { $match: { $expr: { $gt: ["$SAL", "$jones_info.SAL"] } } },
-  { $project: { jones_info: 0 } }
-])
+    //46. Beispiel
+    db.emps.aggregate([
+        { $lookup: {
+            from: "emps",
+            pipeline: [{ $match: { ENAME: "JONES" } }],
+            as: "jones_info"
+            }},
+        { $unwind: "$jones_info" },
+        { $match: { $expr: { $gt: ["$SAL", "$jones_info.SAL"] } } },
+        { $project: { jones_info: 0 } }
+        ])
 
-//47. Beispiel
-db.emps.aggregate([
-  { $lookup: {
-      from: "emps",
-      localField: "parent_id",
-      foreignField: "id",
-      as: "manager"
-  }},
-  { $unwind: "$manager" },
-  { $match: { $expr: { $gt: ["$SAL", "$manager.SAL"] } } },
-  { $project: {
-      Employee: "$ENAME", Emp_Sal: "$SAL",
-      Manager: "$manager.ENAME", Mgr_Sal: "$manager.SAL", _id: 0
-  }}
-])
+    //47. Beispiel
+    db.emps.aggregate([
+        { $lookup: {
+            from: "emps",
+            localField: "parent_id",
+            foreignField: "id",
+            as: "manager"
+            }},
+        { $unwind: "$manager" },
+        { $match: { $expr: { $gt: ["$SAL", "$manager.SAL"] } } },
+        { $project: {
+            Employee: "$ENAME", Emp_Sal: "$SAL",
+            Manager: "$manager.ENAME", Mgr_Sal: "$manager.SAL", _id: 0
+            }}
+        ])
 
-//48. Beispiel
-db.emps.aggregate([
-  { $lookup: {
-      from: "emps",
-      pipeline: [{ $match: { JOB: "PRESIDENT" } }],
-      as: "pres"
-  }},
-  { $unwind: "$pres" },
-  { $match: { $expr: { $lt: ["$SAL", { $multiply: ["$pres.SAL", 0.30] }] } } },
-  { $project: { pres: 0 } }
-])
+    //48. Beispiel
+    db.emps.aggregate([
+        { $lookup: {
+            from: "emps",
+            pipeline: [{ $match: { JOB: "PRESIDENT" } }],
+            as: "pres"
+            }},
+        { $unwind: "$pres" },
+        { $match: { $expr: { $lt: ["$SAL", { $multiply: ["$pres.SAL", 0.30] }] } } },
+        { $project: { pres: 0 } }
+        ])
 
-//49. Beispiel
-db.depts.aggregate([
-  { $lookup: {
-      from: "emps",
-      localField: "DEPTNO",
-      foreignField: "dept_id",
-      as: "staff"
-  }},
-  { $match: { staff: { $size: 0 } } },
-  { $project: { staff: 0 } }
-])
+    //49. Beispiel
+    db.depts.aggregate([
+        { $lookup: {
+            from: "emps",
+            localField: "DEPTNO",
+            foreignField: "dept_id",
+            as: "staff"
+            }},
+        { $match: { staff: { $size: 0 } } },
+        { $project: { staff: 0 } }
+        ])
+
+    db.emps.aggregate([
+        { $match: {ENAME: "JONES"}
+
+        }])
+
+    //Beispiel 51
+    db.emps.aggregate([
+        { $lookup: {
+            from: "emps",
+            pipeline: [{ $match: { ENAME: "JONES" } }],
+            as: "jones"
+            }},
+        { $unwind: "$jones" },
+        { $match: { $expr: { $eq: ["$JOB", "$jones.JOB"] }, ENAME: { $ne: "JONES" } } },
+        { $project: { ENAME: 1, _id: 0 } }
+        ])
+
+    //Beispiel 52
+    db.emps.aggregate([
+        { $project: { ENAME: 1, name_length: { $strLenCP: "$ENAME" } } },
+        { $sort: { name_length: -1 } },
+        { $limit: 1 },
+        { $project: { ENAME: 1, _id: 0 } }
+        ])
